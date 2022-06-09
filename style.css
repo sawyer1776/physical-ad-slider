@@ -1,0 +1,141 @@
+/* Connect to CONFIG sheet */
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+	font-family: sans-serif;
+	scroll-behavior: smooth;
+	background-color: rgb(0, 0, 0);
+}
+
+:root {
+	--TRANSITION-TIME: 1500ms;
+}
+
+.slider-content {
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+
+	overflow: hidden;
+}
+
+.slider-container {
+	display: flex;
+	position: relative;
+}
+
+.img {
+	width: 100vw;
+	object-fit: contain;
+	transition: all var(--TRANSITION-TIME) ease-in-out;
+	flex-grow: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translateX(100vw);
+}
+
+.start {
+	transform: translateX(00vw);
+}
+
+.btn {
+	font-family: sans-serif;
+	font-size: 6vh;
+	margin: 6vh;
+	padding: 3vh 6vh;
+	height: 15vh;
+	width: 75vh;
+	border-radius: 1vh;
+	transition: all 250ms;
+	font-weight: 600;
+}
+
+.btn:hover,
+.btn:active {
+	cursor: pointer;
+	transform: scale(1.05);
+}
+
+*:focus {
+	outline: none;
+	box-shadow: 0 0 0 2vh rgb(0, 102, 255);
+
+	transform: scale(1.1);
+}
+
+.btn-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.392);
+}
+
+.btn-text {
+	color: white;
+	text-align: center;
+	font-size: 4vh;
+	width: 115vh;
+	line-height: 1.5;
+}
+
+.btn-div {
+	display: flex;
+}
+
+.number-container {
+	display: flex;
+	gap: 3vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 3vh;
+	color: white;
+
+	font-size: 4vh;
+	margin: 0 6vh;
+}
+
+.number-selector {
+	color: black;
+	background-color: white;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	gap: 3vh;
+	font-size: 8vh;
+	padding: 0;
+	border-radius: 2vh;
+	width: 40vh;
+	overflow: hidden;
+}
+
+.selector {
+	background-color: rgb(175, 175, 175);
+	height: 12vh;
+	transition: all 250ms;
+}
+
+.selector:hover,
+.selector:active {
+	cursor: pointer;
+	background-color: rgb(146, 146, 146);
+	transform: scale(1.1);
+}
+
+.move-to-back {
+	z-index: -999;
+}
+.move-to-front {
+	z-index: 999;
+}
