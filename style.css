@@ -84,7 +84,7 @@ html {
 	color: white;
 	text-align: center;
 	font-size: 4vh;
-	width: 115vh;
+	width: 110vh;
 	line-height: 1.5;
 }
 
@@ -122,7 +122,7 @@ html {
 
 .selector {
 	background-color: rgb(175, 175, 175);
-	height: 12vh;
+	height: 14vh;
 	transition: all 250ms;
 }
 
