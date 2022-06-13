@@ -1,7 +1,4 @@
 ///// CONFIG /////
-///// DEV connect to the style sheet /////
-const BACKGROUND_COLOR = '000'; //black
-
 let SLIDE_DURATION = 10; // IN SECONDS
 
 let TRANSITION_TIME = 1.5; // IN SECONDS
@@ -17,24 +14,19 @@ const buttonContainer = document.querySelector(
 
 const slides = document.querySelector('.img');
 
-// const buttons = document.querySelector('.btn-div');
-
-//Select left and right arrows for slider
+//Select left and right arrows for setting times
 const lessSlide = document.querySelector('.less-slide');
 const moreSlide = document.querySelector('.more-slide');
 const lessTrans = document.querySelector('.less-trans');
 const moreTrans = document.querySelector('.more-trans');
 
-//Time numbers
+//text content for time values
 const slideNumber = document.querySelector('.slide-number');
 const transNumber = document.querySelector('.trans-number');
 
 //buttons
-
 const startBtn = document.querySelector('.btn-start');
 const refreshBtn = document.querySelector('.btn-refresh');
-
-// const imgEl = document.querySelector('.img');
 
 ///// GLOBAL VARIABLES /////
 //Keeps track of where you are in the loop
@@ -42,9 +34,10 @@ let counter = 1;
 
 ///// MAKE DYNAMIC /////
 // This array is the file name of each image to be put into the slider
+// images need to be in the img folder to work
 const images = ['img-1.jpg', 'img-2.jpg', 'img-3.jpg'];
 
-//Creates the HTML element for a slide index is the position inside of the images array
+//Creates the HTML element for a slide. index is the position inside of the images array
 const createImg = function (index) {
 	let newImg = document.createElement('img');
 	newImg.setAttribute('src', `img/${images[index - 1]}`);
@@ -55,7 +48,7 @@ const createImg = function (index) {
 };
 
 //Loop that Rotates the images
-// Needs a current and next image element to function
+// Needs to already have a current and next image element to function
 const rotate = function () {
 	setTimeout(() => {
 		//Remove the element that was pushed out of the viewport last loop
