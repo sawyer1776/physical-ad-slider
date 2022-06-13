@@ -125,6 +125,20 @@ const renderTime = function (object) {
 	}
 };
 
+function toggleFullscreen() {
+	let elem = document.querySelector('.slider-content');
+
+	if (!document.fullscreenElement) {
+		elem.requestFullscreen().catch((err) => {
+			alert(
+				`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`
+			);
+		});
+	} else {
+		document.exitFullscreen();
+	}
+}
+
 // Starts the application
 const init = function () {
 	// created the first 2 images only the first one will start visible
@@ -142,11 +156,23 @@ const init = function () {
 	buttonContainer.classList.remove('move-to-front');
 	buttonContainer.classList.add('move-to-back');
 
+	//makes full screen
+	toggleFullscreen();
+
 	//Starts the loop
 	rotate();
 
 	//delete the start slideshow btn
 	startBtn.remove();
+
+	//Add toggle full screen
+	let newBtn = document.createElement('button');
+	newBtn.setAttribute('class', 'btn btn-toggle');
+	newBtn.textContent = 'Toggle Full Screen';
+	document
+		.querySelector('.btn-div')
+		.insertAdjacentElement('afterbegin', newBtn);
+	newBtn.addEventListener('click', toggleFullscreen);
 };
 
 //Initial setup sets the visible number equal to the config
