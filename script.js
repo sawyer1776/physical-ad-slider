@@ -3,6 +3,8 @@ let SLIDE_DURATION = 10; // IN SECONDS
 
 let TRANSITION_TIME = 1.5; // IN SECONDS
 
+///// IMPORTS /////
+
 ///// DOM SELECTORS /////
 const sliderContainer = document.querySelector(
 	'.slider-container'
@@ -39,7 +41,7 @@ let imgNext = '';
 ///// MAKE DYNAMIC /////
 // This array is the file name of each image to be put into the slider
 // images need to be in the img folder to work
-const images = ['img-1.jpg', 'img-2.jpg', 'img-3.jpg'];
+const images = []; //'img-1.jpg', 'img-2.jpg', 'img-3.jpg'
 
 //Creates the HTML element for a slide. index is the position inside of the images array
 const createImg = function (index) {
@@ -159,6 +161,16 @@ const addToggleBtn = function () {
 	newBtn.addEventListener('click', toggleFullscreen);
 };
 
+const addBtn = function (name, text, func) {
+	let newBtn = document.createElement('button');
+	newBtn.setAttribute('class', `btn btn-${name}`);
+	newBtn.textContent = text;
+	document
+		.querySelector('.btn-div')
+		.insertAdjacentElement('afterbegin', newBtn);
+	newBtn.addEventListener('click', func);
+};
+
 const showAndHide = function (e) {
 	if (e.code == 'KeyH') {
 		hideButtons();
@@ -210,12 +222,37 @@ const start = function () {
 	startBtn.remove();
 
 	//Add toggle full screen btn
-	addToggleBtn();
+	// addToggleBtn();
+	addBtn('toggle', 'Toggle Full Screen', toggleFullscreen);
+	addBtn('hide', 'Hide Menu', hideButtons);
 };
 
-//refresh images
-//looks for new images creates an array based on what is in the folder
-// refreshBtn.addEventListener('click', refresh)
+// refreshBtn.addEventListener('click', async () => {
+// 	try {
+// 		const directoryHandleOrUndefined = await get(
+// 			'directory'
+// 		);
+// 		if (directoryHandleOrUndefined) {
+// 			console.log('Dir or undefined');
+// 			console.log(directoryHandleOrUndefined.name);
+// 			return;
+// 		}
+// 		// const directoryHandle =
+// 		// 	await window.showDirectoryPicker();
+// 		// await set('directory', directoryHandle);
+// 		// console.log('dir name');
+// 		// console.log(directoryHandle.name);
+// 		const butDir = document.getElementById('butDirectory');
+// 		butDir.addEventListener('click', async () => {
+// 			const dirHandle = await window.showDirectoryPicker();
+// 			for await (const entry of dirHandle.values()) {
+// 				console.log(entry.kind, entry.name);
+// 			}
+// 		});
+// 	} catch (error) {
+// 		alert(error.name, error.message);
+// 	}
+// });
 
 /////REFACTOR BELOW LOTS OF SIMILAR CODE /////
 
@@ -282,8 +319,25 @@ const init = function () {
 
 init();
 
+const testFunc = function () {
+	console.log(images);
+};
+
 //Clickables
-startBtn.addEventListener('click', start);
+startBtn.addEventListener('click', start); //start
+
+refreshBtn.addEventListener(
+	'click',
+	async function lookFile() {
+		const dirHandle = await window.showDirectoryPicker();
+
+		for await (const [key, value] of dirHandle.entries()) {
+			images.push(key);
+			startBtn.classList.remove('hidden');
+			refreshBtn.classList.add('hidden');
+		}
+	}
+);
 
 moreSlide.addEventListener('click', moreSlideClick);
 lessSlide.addEventListener('click', lessSlideClick);
